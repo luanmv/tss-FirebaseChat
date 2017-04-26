@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setAdapter(arrayAdapter);
 
-        request_user_name();
+        if (!Constantes.getNAME().equals(""))
+            request_user_name();
 
         add_room.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +109,13 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                name = input_field.getText().toString();
+                if (input_field.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "El nombre no debe ir vacío", Toast.LENGTH_SHORT).show();
+                    request_user_name();
+                } else {
+                    name = input_field.getText().toString();
+                    Constantes.NAME = name;
+                }
             }
         });
 
