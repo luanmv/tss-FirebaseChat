@@ -133,6 +133,7 @@ public class Chat_Room extends AppCompatActivity {
         }
     }
 
+    /* Muestra notificaciones */
     private void ShowNotification(String title, String body) {
         Intent intent = new Intent(this, Chat_Room.class);
         intent.putExtra("room_name", room_name);
