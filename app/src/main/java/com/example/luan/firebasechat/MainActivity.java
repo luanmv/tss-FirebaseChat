@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setAdapter(arrayAdapter);
 
-        if (!Constantes.getNAME().equals(""))
+        if (Constantes.getNAME().equals(""))
             request_user_name();
 
         add_room.setOnClickListener(new View.OnClickListener() {
