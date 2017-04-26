@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Random;
 
 /**
  * Created by Luís on 24/04/2017.
@@ -54,7 +53,7 @@ public class Chat_Room extends AppCompatActivity {
 
         user_name = getIntent().getExtras().get("user_name").toString();
         room_name = getIntent().getExtras().get("room_name").toString();
-        setTitle(" Room - " + room_name);
+        setTitle(" Chat - " + room_name);
 
         root = FirebaseDatabase.getInstance().getReference().child(room_name);
 
@@ -112,13 +111,9 @@ public class Chat_Room extends AppCompatActivity {
 
     }
 
-
-    /* en caso de no funcionar, quitar el RequiresApi */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void append_chat_conversation(DataSnapshot dataSnapshot) {
-
         Iterator i = dataSnapshot.getChildren().iterator();
-
         while (i.hasNext()) {
 
             String chat_msg = (String) ((DataSnapshot) i.next()).getValue();
@@ -135,7 +130,7 @@ public class Chat_Room extends AppCompatActivity {
 
     /* Muestra notificaciones */
     private void ShowNotification(String title, String body) {
-        Intent intent = new Intent(this, Chat_Room.class);
+        Intent intent = new Intent(getApplicationContext(), Chat_Room.class);
         intent.putExtra("room_name", room_name);
         intent.putExtra("user_name", user_name);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
